@@ -72,7 +72,12 @@ int main()
 using namespace std;
 int cal_pow(int m, int n)
 {
-     return pow(m, n);
+     int a = 1;
+     while (n--)
+     {
+          a = a * m;
+     }
+     return a;
 }
 int main()
 {
@@ -80,10 +85,9 @@ int main()
      cout<<"Enter a number and it's power ";
      cin>>p>>q;
      r = cal_pow(p, q);
-     cout<<p<<" of power is "<<q<<" = "<<r;
+     cout<<p<<" power "<<q<<" is = "<<r;
      return 0;
 }
-
 
 
 
