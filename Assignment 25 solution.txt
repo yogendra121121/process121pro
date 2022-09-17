@@ -6,12 +6,12 @@
 using namespace std;
 class complex
 {
-private:
-     float real;
+private:  
+     float real;                         //instance memeber variable
      float imagenary;
 public:
-     void set(float r, float i)
-     {
+     void set(float r, float i)      // r and i is local variable and set() is
+     {                               // instance member function
           real = r;
 	  imagenary = i; 
      }
@@ -72,29 +72,51 @@ int main()
 
 
 
-3. Define a class Factorial and define an instance member function to find the Factorial
-of a number using class
+3. Define a class Factorial and define an instance member function to find the Factorial of a number using class
 
 #include<iostream>
 using namespace std;
 class Factorial
 {
+private:
+     int n;
+     int fact;
 public:
-     void fact(int n)
+     void setN(int x)
      {
+          n = x;
+     }
+     int getN()
+     {
+          return n;
+     }
+     int getfactorial()
+     {
+          return fact;
+     }
+     void factorial()
+     {
+	  
           int f = 1, i;
+	  if(n <= 0)
+	  {
+	       fact = 1;
+	       return;
+          }./
           for (i = 1; i <= n; i++)
           {
                f = f*i;
           }
-          cout<<"factorial is: "<<f;
+          fact = f;
      }
 };
 
 int main()
 {
      Factorial f1;
-     f1.fact(6);
+     f1.setN(7);
+     f1.factorial();
+     cout<<"factorial of "<<f1.getN()<<" is "<<f1.getfactorial();
 
      return 0;
 }
@@ -102,27 +124,50 @@ int main()
 
 
 
-4. Define a class LargestNumber and define an instance member function to find the
-Largest of three Numbers using the class.
+4. Define a class LargestNumber and define an instance member function to find the Largest of three Numbers using the class.
 
 #include<iostream>
 using namespace std;
 class LargestNumber
 {
+
+private:
+     int a,b,c,larger;
 public:
-     void Greater_among_three(int a, int b, int c)
+     void setVar(int x, int y, int z)
+     {
+          a = x, b = y, c = z;
+     }
+     int get_a()
+     {
+          return a;
+     }
+     int get_b()
+     {
+          return b;
+     }
+     int get_c()
+     {
+          return c;
+     }
+     int getLargerNumber()
+     {
+          return larger;
+     }
+     void Greater_among_three()
      {
           int max;
           max = a>b?a>c?a:c:b>c?b:c;
-          cout<<"greatest number is: "<<max;
+          larger = max;
      }
 };
 
 int main()
 {
      LargestNumber l;
-     l.Greater_among_three(16, 35, 17);
-
+     l.setVar(23,56,4);
+     l.Greater_among_three();
+     cout<<"greater among "<<l.get_a()<<", "<<l.get_b()<<" and "<<l.get_c()<<" is = "<<l.getLargerNumber();
      return 0;
 }
 
@@ -136,9 +181,27 @@ Reverse of a Number using class.
 using namespace std;
 class ReverseNumber
 {
+
+private:
+     int n, reverseNumber;
+     int actualNumber;
 public:
-     void reverse(int n)
+     void setN(int x)
+     {
+          n = x;
+          actualNumber = n;
+     }
+     int getN()
+     {
+          return actualNumber;
+     }
+     int getReverseNumber()
+     {
+          return reverseNumber;
+     }
+     void calculateReverseNumber()
      {    
+
           int re = 0;
           while (n > 0)
           {
@@ -146,14 +209,16 @@ public:
                re = re*10 + remain;
                n = n/10;
           }
-          cout<<"Reverse number is: "<<re;
+          reverseNumber = re;
      }
 };
 
 int main()
 {
      ReverseNumber ob;
-     ob.reverse(23456);
+     ob.setN(23456);
+     ob.calculateReverseNumber();
+     cout<<ob.getN()<<" of reverse number is = "<<ob.getReverseNumber(); 
 
      return 0;
 }
@@ -167,22 +232,51 @@ int main()
 using namespace std;
 class Square
 {
+
+private:
+     int x, x2;
+     static int count;
 public:
-     int square(int x)
+     void setx(int n)
      {
-          static int count;
-          cout<<"Square is = "<<x*x<<" ,and "<<++count<<" times a function is called."<<endl;
-          
+          x = n;
+     }
+     int getx()
+     {
+          return x;
+     }
+     int getSquare()
+     {
+          return x2;
+     }
+     int getCount()
+     {
+          return count;
+     }
+     void CalculateSquare()
+     {
+          x2 =  x*x;
+          count++;
      }
 };
+int Square :: count;
 
 int main()
 {
      Square s,s1,s2,s3;
-     s.square(4);
-     s1.square(7);
-     s2.square(14);
-     s3.square(17);
+     s.setx(5);
+     s1.setx(3);
+     s2.setx(4);
+     s3.setx(7);
+     s.CalculateSquare();
+     s1.CalculateSquare();
+     s2.CalculateSquare();
+     s3.CalculateSquare();
+     cout<<"Square of "<<s.getx()<<" is = "<<s.getSquare()<<endl;
+     cout<<"Square of "<<s1.getx()<<" is = "<<s1.getSquare()<<endl;
+     cout<<"Square of "<<s2.getx()<<" is = "<<s2.getSquare()<<endl;
+     cout<<"Square of "<<s3.getx()<<" is = "<<s3.getSquare()<<endl;
+     cout<<"Function call is "<<s.getCount()<<" time called"<<endl;
      return 0;
 }
 
@@ -194,22 +288,46 @@ int main()
 
 #include<iostream>
 using namespace std;
-class Greatest
+class LargestNumber
 {
+
+private:
+     int a,b,c,larger;
 public:
-     void Largest(int a, int b, int c)
+     void setVar(int x, int y, int z)
      {
-          int largest;
-          largest = a>b?a>c?a:c:b>c?b:c;
-          cout<<"greatest number is: "<<largest;
+          a = x, b = y, c = z;
+     }
+     int get_a()
+     {
+          return a;
+     }
+     int get_b()
+     {
+          return b;
+     }
+     int get_c()
+     {
+          return c;
+     }
+     int getLargerNumber()
+     {
+          return larger;
+     }
+     void Greater_among_three()
+     {
+          int max;
+          max = a>b?a>c?a:c:b>c?b:c;
+          larger = max;
      }
 };
 
 int main()
 {
-     Greatest g;
-     g.Largest(16, 35, 17);
-
+     LargestNumber l;
+     l.setVar(23,56,4);
+     l.Greater_among_three();
+     cout<<"greater among "<<l.get_a()<<", "<<l.get_b()<<" and "<<l.get_c()<<" is = "<<l.getLargerNumber();
      return 0;
 }
 
@@ -223,19 +341,31 @@ int main()
 using namespace std;
 class Rectangle
 {
+
+private:
+     int width, length, area;
 public:
-     void area_of_rectangle(int w, int l)
+     void setValues(int w, int l)
+     {
+          width = w, length = l;
+     }
+     int getArea()
+     {
+          return area;
+     }
+     void area_of_rectangle()
      {    
-          int area = l * w;
-          cout<<"area of the rectangle is: "<<area;
+          int a = width * length;
+          area = a;
      }
 };
 
 int main()
 {
      Rectangle ob;
-     ob.area_of_rectangle(4, 6);
-
+     ob.setValues(5,6);
+     ob.area_of_rectangle();
+     cout<<"Area of rectangle is = "<<ob.getArea();
      return 0;
 }
 
@@ -244,26 +374,35 @@ int main()
 
 9. Define a class Circle and define an instance member function to find the area of the circle.
 
-
 #include<iostream>
 using namespace std;
 class Circle
 {
-public:
-     void area_of_circle(float r)
-     {    
-          float pi = 3.14, area;
-          area = pi * r * r;
-          cout<<"area of the circle is: "<<area;
 
+private:
+     float r, area;
+public:
+     void setValues(float x)
+     {
+          r = x;
+     }
+     float getArea()
+     {
+          return area;
+     }
+     void area_of_rectangle()
+     {    
+          float a = 3.14 * r * r;
+          area = a;
      }
 };
 
 int main()
 {
      Circle ob;
-     ob.area_of_circle(5);
-
+     ob.setValues(3);
+     ob.area_of_rectangle();
+     cout<<"Area of circle is = "<<ob.getArea();
      return 0;
 }
 
@@ -274,43 +413,50 @@ int main()
 10. Define a class Area and define instance member functions to find the area of the
 different shapes like square, rectangle , circle etc.
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 class Area
 {
+private:
+     float side, length, width, redius;
+
 public:
-     void area_of_circle(float r)
-     {    
-          float pi = 3.14, area;
-          area = pi * r * r;
-          cout<<"area of the circle is: "<<area<<endl;
+     void setSide(int a)
+     {
+          side = a;
      }
-     void area_of_rectangle(int w, int l)
-     {    
-          int area = l * w;
-          cout<<"area of the rectangle is: "<<area<<endl;
+     void setRedius(int r)
+     {
+          redius = r;
      }
-     void area_of_square(int a)
-     {    
-          int area = a * a;
-          cout<<"area of the square is: "<<area<<endl;
+     void setLengthWidth(int l, int w)
+     {
+          length = l;
+          width = w;
      }
-     void area_of_triangle(int b, int h )
-     {    
-          float area = (h * b)/2;
-          cout<<"area of the triangle is: "<<area<<endl;
+     float area_of_square()
+     {
+          return side * side;
+     }
+     float area_of_rectangle()
+     {
+          return length*width;
+     }
+     float area_of_circle()
+     {
+          return 3.14*redius*redius;
      }
 };
 
 int main()
 {
-     Area ob;
-     ob.area_of_circle(5);
-     ob.area_of_rectangle(45,5);
-     ob.area_of_square(46);
-     ob.area_of_triangle(43,7);
+     Area a;
+     a.setRedius(3);
+     a.setLengthWidth(5,7);
+     a.setSide(7);
 
-
-
+     cout<<"Area of circle is: "<<a.area_of_circle()<<endl;
+     cout<<"Area of square is: "<<a.area_of_square()<<endl;
+     cout<<"Area of rectangle is: "<<a.area_of_rectangle()<<endl;
      return 0;
 }
